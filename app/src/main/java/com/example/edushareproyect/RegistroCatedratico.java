@@ -17,7 +17,7 @@ public class RegistroCatedratico extends AppCompatActivity {
     }
 
     private void validarSesion(){
-        SharedPreferences informacionSession = getSharedPreferences("MailValidation", Context.MODE_PRIVATE);
+        SharedPreferences informacionSession = getSharedPreferences("session", Context.MODE_PRIVATE);
         String token = informacionSession.getString("token","");
         Integer perfilID = informacionSession.getInt("perfilID",0);
         Boolean active = informacionSession.getBoolean("active",false);

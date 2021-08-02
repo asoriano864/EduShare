@@ -40,7 +40,7 @@ public class MailValidation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mail_validation);
 
-        session = this.getPreferences(Context.MODE_PRIVATE);
+        session = this.getSharedPreferences("session",Context.MODE_PRIVATE);
         EditorS = session.edit();
 
         url = RestApiMehotds.ApiPOSTSesionMail;
