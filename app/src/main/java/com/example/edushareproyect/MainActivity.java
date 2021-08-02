@@ -27,16 +27,27 @@ public class MainActivity extends AppCompatActivity {
     String correo = "";
     String password = "";
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        validarSesion();
+
         EditText txtCorreo = (EditText) findViewById(R.id.LoginCorreo);
         EditText txtPassword = (EditText) findViewById(R.id.LoginPassword);
+
+        /*Intent principal = new Intent(this, RegistroAlumno.class);
+        startActivity(principal);*/
+
+        Button btnRegistro = (Button) findViewById(R.id.btnOpenRegistro);
+        btnRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openReg = new Intent(getApplicationContext(), SeleccionarRegistro.class);
+                startActivity(openReg);
+            }
+        });
 
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
                     Login(correo,password);
 
                 }
-
-
-
             }
         });
 
@@ -96,6 +104,17 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue =Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(jsonObjectRequest);
 
+    }
+
+    private void validarSesion(){
+        SharedPreferences informacionSession = getSharedPreferences("MailValidation", Context.MODE_PRIVATE);
+        String token = informacionSession.getString("token","");
+        Integer perfilID = informacionSession.getInt("perfilID",0);
+        Boolean active = informacionSession.getBoolean("active",false);
+        if(active){
+            Intent vistaP = new Intent(getApplicationContext(), VistaPrincipal.class);
+            startActivity(vistaP);
+        }
     }
 
 }

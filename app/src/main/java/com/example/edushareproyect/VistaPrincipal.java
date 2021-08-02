@@ -1,5 +1,7 @@
 package com.example.edushareproyect;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -21,9 +23,14 @@ public class VistaPrincipal extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityVistaPrincipalBinding binding;
 
+    String token;
+    Integer perfilID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences informacionSession = getSharedPreferences("sesion", Context.MODE_PRIVATE);
 
         binding = ActivityVistaPrincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
