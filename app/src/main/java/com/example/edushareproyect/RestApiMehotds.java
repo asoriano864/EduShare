@@ -20,4 +20,13 @@ public class RestApiMehotds {
      **/
      public static final String ApiPOSTLogin = ipaddress+"/api/session/login";
 
+     /*
+     * Interaccion con Grupos
+     */
+
+    public static final String ApiGruposUser = ipaddress + "/api/grupos/lista/usuario";
+    public static final String ApiPostAdmin = ipaddress + "/api/grupos/administrador";
+    public static final String ApiPostMembers = ipaddress + "/api/grupos/lista/integrantes";
+    public static final String ApiPostAddMiembro = ipaddress +"/api/grupo/agregar/alumno";
+
 }

@@ -16,7 +16,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,16 +32,14 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.edushareproyect.Objetos.Alumno;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 public class RegistroAlumno extends AppCompatActivity {
 
@@ -423,7 +420,7 @@ public class RegistroAlumno extends AppCompatActivity {
     //-----------------------------------------------------------------------------------------------------------------------//
 
     private void validarSesion(){
-        SharedPreferences informacionSession = getSharedPreferences("MailValidation", Context.MODE_PRIVATE);
+        SharedPreferences informacionSession = getSharedPreferences("session", Context.MODE_PRIVATE);
         String token = informacionSession.getString("token","");
         Integer perfilID = informacionSession.getInt("perfilID",0);
         Boolean active = informacionSession.getBoolean("active",false);

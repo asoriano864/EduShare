@@ -1,6 +1,7 @@
 package com.example.edushareproyect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +31,7 @@ public class VistaPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences informacionSession = getSharedPreferences("sesion", Context.MODE_PRIVATE);
+        validarSesion();
 
         binding = ActivityVistaPrincipalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -69,4 +70,18 @@ public class VistaPrincipal extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private void validarSesion(){
+        SharedPreferences informacionSession = getSharedPreferences("session", Context.MODE_PRIVATE);
+        String token = informacionSession.getString("token","");
+        Integer perfilID = informacionSession.getInt("perfilID",0);
+        Boolean active = informacionSession.getBoolean("active",false);
+        if(!active){
+            Intent vistaP = new Intent(getApplicationContext(), VistaPrincipal.class);
+            startActivity(vistaP);
+        }
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------------//
 }

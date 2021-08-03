@@ -2,7 +2,9 @@ package com.example.edushareproyect;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,10 +29,15 @@ public class MainActivity extends AppCompatActivity {
     String correo = "";
     String password = "";
 
+    SharedPreferences session;
+    SharedPreferences.Editor EditorS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        session = this.getSharedPreferences("session",Context.MODE_PRIVATE);
+        EditorS = session.edit();
 
         validarSesion();
 
@@ -75,12 +82,17 @@ public class MainActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(getApplicationContext(), "Respuesta: " + response, Toast.LENGTH_LONG).show();
-                VolleyLog.d("Status "+ response.toString());
+                //Toast.makeText(getApplicationContext(), "Respuesta: " + response, Toast.LENGTH_LONG).show();
+                //VolleyLog.d("Status "+ response.toString());
                 try{
                     String statusRespuesta = response.getString("STATUS");
                     if(statusRespuesta.equals("1")){
                         token = response.getString("DATA");
+                        Integer perfilID = response.getInt("PERFIL");
+
+                        /*CREARMOS LA SESSION EN SHAREDPREFERENCES*/
+                        sessionData(token,perfilID);
+
                         /*Datos validos iniciamos la sesion*/
                         Intent intent = new Intent(getApplicationContext(),VistaPrincipal.class);
                         startActivity(intent);
@@ -106,8 +118,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private void mostrarDialogo(String title, String mensaje) {
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(mensaje)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+    }
+    //-----------------------------------------------------------------------------------------------------------------------//
+
+    //-----------------------------------------------------------------------------------------------------------------------//
     private void validarSesion(){
-        SharedPreferences informacionSession = getSharedPreferences("MailValidation", Context.MODE_PRIVATE);
+        SharedPreferences informacionSession = getSharedPreferences("session", Context.MODE_PRIVATE);
         String token = informacionSession.getString("token","");
         Integer perfilID = informacionSession.getInt("perfilID",0);
         Boolean active = informacionSession.getBoolean("active",false);
@@ -116,5 +143,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(vistaP);
         }
     }
+
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private void sessionData(String token, Integer perfilID){
+        try{
+            EditorS.putString("token",token);
+            EditorS.putInt("perfilID",perfilID);
+            EditorS.putBoolean("active",true);
+
+            EditorS.apply();
+
+        }catch(Exception e){
+            mostrarDialogo("error",e.getMessage());
+            e.printStackTrace();
+        }
+
+
+    }
+    //-----------------------------------------------------------------------------------------------------------------------//
 
 }

@@ -1,4 +1,4 @@
-package com.example.edushareproyect;
+package com.example.edushareproyect.Objetos;
 
 public class Alumno {
     String cuenta;
