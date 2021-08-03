@@ -22,4 +22,11 @@
         android:name="com.example.edushareproyect.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_archivos_grupos"
+        android:name="com.example.edushareproyect.ui.ArchivosGrupo"
+        android:label="ArchivosGrupos"
+        tools:layout="@layout/fragment_archivos_grupo"/>
+
 </navigation>

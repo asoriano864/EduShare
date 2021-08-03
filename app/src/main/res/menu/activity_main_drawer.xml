@@ -7,19 +7,20 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@android:drawable/ic_menu_sort_by_size"
-            android:title="Inicio" />
+            android:title="Grupos" />
+
         <item
             android:id="@+id/nav_gallery"
             android:icon="@android:drawable/ic_menu_sort_by_size"
-            android:title="Grupos" />
+            android:title="Contactos" />
+
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@android:drawable/ic_menu_sort_by_size"
             android:title="Mis Archivos" />
 
-        <item
-            android:id="@+id/nav_perfil"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
-            android:title="perfil" />
+
+
+
     </group>
 </menu>

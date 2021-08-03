@@ -53,7 +53,7 @@
                 tools:layout_editor_absoluteY="60dp">
 
                 <ListView
-                    android:id="@+id/listadoCatedraticos"
+                    android:id="@+id/ListviewGrupos"
                     android:layout_width="match_parent"
                     android:layout_marginRight="16dp"
                     android:layout_height="wrap_content" />

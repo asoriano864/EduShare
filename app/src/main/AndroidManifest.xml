@@ -18,15 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduShareProyect"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AgregarGrupo"></activity>
+        <activity android:name=".FileUpload"></activity>
+        <activity android:name=".AgregarGrupo" />
         <activity
             android:name=".CatedraticoActivity"
             android:label="@string/title_activity_catedratico"
-            android:theme="@style/Theme.EduShareProyect.NoActionBar"></activity>
+            android:theme="@style/Theme.EduShareProyect.NoActionBar" />
         <activity
             android:name=".Catedratico"
             android:label="@string/title_activity_catedratico"
-            android:theme="@style/Theme.EduShareProyect.NoActionBar"></activity>
+            android:theme="@style/Theme.EduShareProyect.NoActionBar" />
         <activity android:name=".MailValidation" />
         <activity android:name=".RegistroCatedratico" />
         <activity android:name=".SeleccionarRegistro" />
