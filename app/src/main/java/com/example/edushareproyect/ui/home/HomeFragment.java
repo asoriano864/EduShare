@@ -187,6 +187,8 @@ public class HomeFragment extends Fragment {
                 grupoEspecifico.putExtra("nombreGrupo", nombreGrupo);
                 grupoEspecifico.putExtra("codigoGrupo", codigoGrupo);
                 startActivity(grupoEspecifico);*/
+
+                //Abrir fragmento nuevo
                 Fragment Archivos = new ArchivosGrupo(idGrupo,nombreGrupo,codigoGrupo);
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
