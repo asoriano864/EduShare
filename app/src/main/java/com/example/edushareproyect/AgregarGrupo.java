@@ -32,7 +32,7 @@ public class AgregarGrupo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_grupo);
 
-        txtCodigo = (EditText) findViewById(R.id.txtAgregarGrupo);
+        txtCodigo = (EditText) findViewById(R.id.txtCrearGrupo);
 
         SharedPreferences session = getSharedPreferences("session", MODE_PRIVATE);
         String token = session.getString("token","");

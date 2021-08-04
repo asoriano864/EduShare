@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduShareProyect"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CrearGrupo"></activity>
+        <activity android:name=".RecuperarClave"></activity>
+        <activity android:name=".CrearGrupo" />
         <activity android:name=".FileUpload" />
         <activity android:name=".AgregarGrupo" />
         <activity android:name=".MailValidation" />

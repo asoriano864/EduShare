@@ -21,17 +21,17 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="70dp"
             android:text="Inicio de Sesion"
             android:textAlignment="center"
             android:textColor="#014956"
-            android:textSize="24sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="359dp"
-            android:layout_height="196dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="25dp"
@@ -79,12 +79,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/primary"
-                android:text="Registratme" />
+                android:text="Registrarme" />
 
-
-
+        <TextView
+            android:id="@+id/txtRecuperarClave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recuperar mi contraseña"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:textColor="@color/notificacion" />
 
 
     </LinearLayout>

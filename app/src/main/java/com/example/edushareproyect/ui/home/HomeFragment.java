@@ -30,6 +30,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.edushareproyect.AgregarGrupo;
+import com.example.edushareproyect.CrearGrupo;
 import com.example.edushareproyect.MainActivity;
 import com.example.edushareproyect.Objetos.Grupo;
 import com.example.edushareproyect.R;
@@ -58,10 +59,17 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
+
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
 
 
         /*Recuperar el token de la session*/
-        session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
+        //session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
+        SharedPreferences session = root.getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
         String token = session.getString("token","");
         Integer perfil = session.getInt("perfil",0);
 
@@ -70,33 +78,39 @@ public class HomeFragment extends Fragment {
             startActivity(inicio);
         }
 
-
-
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
         String url = RestApiMehotds.ApiGruposUser;
-
         listadoGrupos = (ListView) root.findViewById(R.id.ListviewGrupos);
         Button btnAddGrupo = (Button) root.findViewById(R.id.btnOpenAgregarGrupo);
+        Log.d("PerfilID: ",perfil.toString());
+        /*Verificacion de perfil*/
+        if(perfil==1){
+            /*estudiante*/
+
+        }else{
+            /*Catedratico*/
+            TextView titulo = root.findViewById(R.id.tituloGrupos);
+            titulo.setText("Mis grupos");
+            btnAddGrupo.setText("Crear Grupo Nuevo");
+        }
+
+
+
         btnAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(perfil == 1){
-                    /*Obtenemos datos para un usuario de perfil estudiante*/
+                Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
+                startActivity(addGrupo);
+
+                /*if(perfil==1){
+
                     Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
                     startActivity(addGrupo);
 
                 }else{
-                    /*Obtenemos datos para un usuario de perfil de catedratico*/
-                    TextView titulo = root.findViewById(R.id.tituloGrupos);
-                    titulo.setText("Mis grupos");
-                    Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
+
+                    Intent addGrupo = new Intent(root.getContext(), CrearGrupo.class);
                     startActivity(addGrupo);
-                }
+                }*/
 
             }
         });
@@ -105,7 +119,6 @@ public class HomeFragment extends Fragment {
         //----------------------------------------------------------------------------------------//
         arregloGrupos = new ArrayList<Grupo>();
         arregloNombresGrupos = new ArrayList<String>();
-
         RequestQueue queue = Volley.newRequestQueue(root.getContext());
 
         JSONObject postData = new JSONObject();
