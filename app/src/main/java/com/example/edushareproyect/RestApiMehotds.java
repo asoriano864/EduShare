@@ -20,6 +20,7 @@ public class RestApiMehotds {
 
     //Catedratico
     public static final String ApiPOSTcatedratico = ipaddress+"/api/registro/catedratico";
+    public static final String ApiPOSTCrearGrupo = ipaddress+"/api/lista/crear/grupo";
 
 
      /**

@@ -17,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_edushare_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EduShareProyect"
+
         android:usesCleartextTraffic="true">
         <activity android:name=".RecuperarClave"></activity>
         <activity android:name=".CrearGrupo" />

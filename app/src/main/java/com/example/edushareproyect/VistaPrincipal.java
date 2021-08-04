@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -72,6 +72,21 @@ public class VistaPrincipal extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                logout();
+                return true;
+
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
     //-----------------------------------------------------------------------------------------------------------------------//
     private void validarSesion(){
@@ -85,5 +100,14 @@ public class VistaPrincipal extends AppCompatActivity {
         }
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------//
+
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private void logout(){
+        SharedPreferences session = getSharedPreferences("session", Context.MODE_PRIVATE);
+        session.edit().clear().commit();
+        Intent main = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(main);
+    }
     //-----------------------------------------------------------------------------------------------------------------------//
 }

@@ -32,7 +32,7 @@ public class AgregarGrupo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_grupo);
 
-        txtCodigo = (EditText) findViewById(R.id.txtCrearGrupo);
+        txtCodigo = (EditText) findViewById(R.id.txtAgregarGrupo);
 
         SharedPreferences session = getSharedPreferences("session", MODE_PRIVATE);
         String token = session.getString("token","");
@@ -80,10 +80,10 @@ public class AgregarGrupo extends AppCompatActivity {
                             startActivity(home);
                         }else{
                             mostrarDialogo("Error en la APP", message);
-                            Log.d("APP EROR", r.toString());
+                            Log.e("APP EROR", r.toString());
                         }
                     }catch (JSONException je){
-                        Log.d("Errro JSON objReq",je.getMessage());
+                        Log.e("Errro JSON objReq",je.getMessage());
                         mostrarDialogo("Error en la APP", "No se pudo obtener una respuesta del servidor");
                     }
 
@@ -91,7 +91,7 @@ public class AgregarGrupo extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("Error en el request",error.getMessage());
+                    Log.e("Error en el request",error.getMessage());
                     mostrarDialogo("Error en la APP", "No se pudo obtener una respuesta del servidor");
                 }
             });
@@ -101,7 +101,7 @@ public class AgregarGrupo extends AppCompatActivity {
 
 
         }catch(JSONException je){
-            Log.d("Errro JSON objReq",je.getMessage());
+            Log.e("Errro JSON objReq",je.getMessage());
             mostrarDialogo("Error en la APP", "No se puede crear el objeto de la peticion");
         }
     }

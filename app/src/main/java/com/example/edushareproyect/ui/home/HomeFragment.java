@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,13 +66,11 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
         /*Recuperar el token de la session*/
         //session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
-        SharedPreferences session = root.getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
+        SharedPreferences session = getActivity().getSharedPreferences("session", Context.MODE_PRIVATE);
         String token = session.getString("token","");
-        Integer perfil = session.getInt("perfil",0);
+        Integer perfil = session.getInt("perfilID",0);
 
         if(token.isEmpty()){
             Intent inicio = new Intent(this.getActivity().getApplicationContext(), MainActivity.class);
@@ -93,15 +92,10 @@ public class HomeFragment extends Fragment {
             btnAddGrupo.setText("Crear Grupo Nuevo");
         }
 
-
-
         btnAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
-                startActivity(addGrupo);
-
-                /*if(perfil==1){
+                if(perfil==1){
 
                     Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
                     startActivity(addGrupo);
@@ -110,7 +104,7 @@ public class HomeFragment extends Fragment {
 
                     Intent addGrupo = new Intent(root.getContext(), CrearGrupo.class);
                     startActivity(addGrupo);
-                }*/
+                }
 
             }
         });
@@ -188,13 +182,20 @@ public class HomeFragment extends Fragment {
                 grupoEspecifico.putExtra("codigoGrupo", codigoGrupo);
                 startActivity(grupoEspecifico);*/
 
-                //Abrir fragmento nuevo
+                //Define el nuevo fragmento (ArchivosGrupo = ArchivosGrupo.class)
                 Fragment Archivos = new ArchivosGrupo(idGrupo,nombreGrupo,codigoGrupo);
 
+                //Fragment transaccion permite preparar el fragmento para ejecutarse
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                //inserta el codigo XML del fragmento nuevo en el fragmento de navigacion en la vista principal
+
                 transaction.replace(R.id.nav_host_fragment_content_vista_principal, Archivos);
+                //Limpia la pila de fragmentos para insertar el nuevo
 
                 transaction.addToBackStack(null);
+                //inserta el nuevo fragmento
+
                 transaction.commit();
 
             }
