@@ -9,10 +9,17 @@ public class RestApiMehotds {
     /*
     * Metodos de registro
     * */
+
+    //Comunes
+    public static final String ApiPOSTSesionMail = ipaddress+"/api/sesion/mail";
     public static final String ApiGETCarreras = ipaddress+"/api/carreras/lista";
     public static final String ApiGETCampus = ipaddress+"/api/campus/lista";
+
+    //Alumno
     public static final String ApiPOSTAlumno = ipaddress+"/api/registro/alumno";
-    public static final String ApiPOSTSesionMail = ipaddress+"/api/sesion/mail";
+
+    //Catedratico
+    public static final String ApiPOSTcatedratico = ipaddress+"/api/registro/catedratico";
 
 
      /**

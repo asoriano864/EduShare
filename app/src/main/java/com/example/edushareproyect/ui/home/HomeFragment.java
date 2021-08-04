@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
         /*Recuperar el token de la session*/
         session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
         String token = session.getString("token","");
+        Integer perfil = session.getInt("perfil",0);
 
         if(token.isEmpty()){
             Intent inicio = new Intent(this.getActivity().getApplicationContext(), MainActivity.class);
@@ -77,14 +78,26 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        String url = RestApiMehotds.ApiGruposUser;
 
         listadoGrupos = (ListView) root.findViewById(R.id.ListviewGrupos);
         Button btnAddGrupo = (Button) root.findViewById(R.id.btnOpenAgregarGrupo);
         btnAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
-                startActivity(addGrupo);
+                if(perfil == 1){
+                    /*Obtenemos datos para un usuario de perfil estudiante*/
+                    Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
+                    startActivity(addGrupo);
+
+                }else{
+                    /*Obtenemos datos para un usuario de perfil de catedratico*/
+                    TextView titulo = root.findViewById(R.id.tituloGrupos);
+                    titulo.setText("Mis grupos");
+                    Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
+                    startActivity(addGrupo);
+                }
+
             }
         });
 
@@ -94,7 +107,7 @@ public class HomeFragment extends Fragment {
         arregloNombresGrupos = new ArrayList<String>();
 
         RequestQueue queue = Volley.newRequestQueue(root.getContext());
-        String url = RestApiMehotds.ApiGruposUser;
+
         JSONObject postData = new JSONObject();
         try {
             postData.put("token", token);

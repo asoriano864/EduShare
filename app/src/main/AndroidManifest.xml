@@ -12,22 +12,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_edushare"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_edushare_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EduShareProyect"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FileUpload"></activity>
+        <activity android:name=".CrearGrupo"></activity>
+        <activity android:name=".FileUpload" />
         <activity android:name=".AgregarGrupo" />
-        <activity
-            android:name=".CatedraticoActivity"
-            android:label="@string/title_activity_catedratico"
-            android:theme="@style/Theme.EduShareProyect.NoActionBar" />
-        <activity
-            android:name=".Catedratico"
-            android:label="@string/title_activity_catedratico"
-            android:theme="@style/Theme.EduShareProyect.NoActionBar" />
         <activity android:name=".MailValidation" />
         <activity android:name=".RegistroCatedratico" />
         <activity android:name=".SeleccionarRegistro" />

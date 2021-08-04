@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">EduShareProyect</string>
+    <string name="app_name">EduShare</string>
     <string name="title_activity_vista_principal">VistaPrincipal</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">EduShare</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
