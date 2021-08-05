@@ -91,10 +91,8 @@ public class ArchivosGrupo extends Fragment {
                 if (mParam1 != null) {
                     //ID, NOMBRE, CODIGO
                     Fragment InformacionGrupo = new InfoGrupo(mParam1,mParam2,mParam3);
-
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.nav_host_fragment_content_vista_principal, InformacionGrupo);
-
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }

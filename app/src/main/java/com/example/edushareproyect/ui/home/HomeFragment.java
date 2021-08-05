@@ -178,11 +178,6 @@ public class HomeFragment extends Fragment {
                 String idGrupo = arregloGrupos.get(position).getId();
                 String nombreGrupo = arregloGrupos.get(position).getNombre();
                 String codigoGrupo = arregloGrupos.get(position).getCodigo();
-                /*Intent grupoEspecifico = new Intent(root.getContext(), ArchivosGrupo.class);
-                grupoEspecifico.putExtra("idGrupo", idGrupo);
-                grupoEspecifico.putExtra("nombreGrupo", nombreGrupo);
-                grupoEspecifico.putExtra("codigoGrupo", codigoGrupo);
-                startActivity(grupoEspecifico);*/
 
                 //Define el nuevo fragmento (ArchivosGrupo = ArchivosGrupo.class)
                 Fragment Archivos = new ArchivosGrupo(idGrupo,nombreGrupo,codigoGrupo);
