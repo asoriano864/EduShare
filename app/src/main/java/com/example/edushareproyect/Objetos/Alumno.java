@@ -1,6 +1,7 @@
 package com.example.edushareproyect.Objetos;
 
 public class Alumno {
+    String id;
     String cuenta;
     String nombres;
     String apellidos;
@@ -13,6 +14,8 @@ public class Alumno {
     String correo;
     String password;
     String foto;
+
+    public Alumno(){}
 
     public Alumno(
             String cuenta,
@@ -27,6 +30,14 @@ public class Alumno {
             String correo,
             String password,
             String foto){}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCuenta() {
         return cuenta;

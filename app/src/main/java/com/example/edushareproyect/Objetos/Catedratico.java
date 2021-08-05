@@ -30,6 +30,13 @@ public class Catedratico {
 
 
 
+    public Catedratico(String nombre, String telefono, String foto, String correo) {
+        this.nombres = nombre;
+        this.telefono = telefono;
+        this.foto = foto;
+        this.correo = correo;
+    }
+
     public String getNombres() {
         return nombres;
     }

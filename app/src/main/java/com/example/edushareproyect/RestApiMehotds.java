@@ -21,7 +21,14 @@ public class RestApiMehotds {
     //Catedratico
     public static final String ApiPOSTcatedratico = ipaddress+"/api/registro/catedratico";
     public static final String ApiPOSTCrearGrupo = ipaddress+"/api/lista/crear/grupo";
+    public static final String ApiPOSTListaGrupos = ipaddress+"/api/grupos/lista/catedratico";
 
+    //Compañeros
+    public static final String ApiPostFriends = ipaddress + "/api/contactos/lista";
+    public static final String ApiPostInfoFriend = ipaddress + "/api/contacto/informacion";
+    public static final String ApiPostInfoUser = ipaddress + "/api/usuario/informacion";
+    public static final String ApiPostAddFriend = ipaddress + "/api/grupos/agregar/contacto";
+    public static final String ApiPostDeleteFriend = ipaddress + "/api/contacto/eliminar";
 
      /**
      * Session (Controles para inicio, validacion y finalizacion de sesion)
@@ -31,7 +38,6 @@ public class RestApiMehotds {
      /*
      * Interaccion con Grupos
      */
-
     public static final String ApiGruposUser = ipaddress + "/api/grupos/lista/usuario";
     public static final String ApiPostAdmin = ipaddress + "/api/grupos/administrador";
     public static final String ApiPostMembers = ipaddress + "/api/grupos/lista/integrantes";

@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
             TextView titulo = root.findViewById(R.id.tituloGrupos);
             titulo.setText("Mis grupos");
             btnAddGrupo.setText("Crear Grupo Nuevo");
+            url = RestApiMehotds.ApiPOSTListaGrupos;
         }
 
         btnAddGrupo.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +105,7 @@ public class HomeFragment extends Fragment {
 
                     Intent addGrupo = new Intent(root.getContext(), CrearGrupo.class);
                     startActivity(addGrupo);
+
                 }
 
             }
