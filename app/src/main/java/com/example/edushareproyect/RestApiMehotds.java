@@ -7,13 +7,14 @@ public class RestApiMehotds {
     public static final String ApiImageUrl = ipaddress+"/WSCurso/UploadFile.php";
 
     /*
-    * Metodos de registro
-    * */
+     * Metodos de registro
+     * */
 
     //Comunes
     public static final String ApiPOSTSesionMail = ipaddress+"/api/sesion/mail";
     public static final String ApiGETCarreras = ipaddress+"/api/carreras/lista";
     public static final String ApiGETCampus = ipaddress+"/api/campus/lista";
+    public static final String ApiPOSTUploadFile= ipaddress+"/api/file/upload";
 
     //Alumno
     public static final String ApiPOSTAlumno = ipaddress+"/api/registro/alumno";
@@ -30,12 +31,12 @@ public class RestApiMehotds {
     public static final String ApiPostAddFriend = ipaddress + "/api/grupos/agregar/contacto";
     public static final String ApiPostDeleteFriend = ipaddress + "/api/contacto/eliminar";
 
-     /**
+    /**
      * Session (Controles para inicio, validacion y finalizacion de sesion)
      **/
-     public static final String ApiPOSTLogin = ipaddress+"/api/session/login";
+    public static final String ApiPOSTLogin = ipaddress+"/api/session/login";
 
-     /*
+    /*
      * Interaccion con Grupos
      */
     public static final String ApiGruposUser = ipaddress + "/api/grupos/lista/usuario";
