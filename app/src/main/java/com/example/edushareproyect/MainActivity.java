@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             EditorS.putString("token",token);
             EditorS.putInt("perfilID",perfilID);
             EditorS.putBoolean("active",true);
+            EditorS.putString("correo",correo);
 
             EditorS.apply();
 

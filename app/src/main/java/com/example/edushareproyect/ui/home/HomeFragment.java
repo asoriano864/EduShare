@@ -67,8 +67,8 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         /*Recuperar el token de la session*/
-        //session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
-        SharedPreferences session = getActivity().getSharedPreferences("session", Context.MODE_PRIVATE);
+        session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
+
         String token = session.getString("token","");
         Integer perfil = session.getInt("perfilID",0);
 
@@ -81,10 +81,10 @@ public class HomeFragment extends Fragment {
         listadoGrupos = (ListView) root.findViewById(R.id.ListviewGrupos);
         Button btnAddGrupo = (Button) root.findViewById(R.id.btnOpenAgregarGrupo);
         Log.d("PerfilID: ",perfil.toString());
+        Log.d("Token: ",token);
         /*Verificacion de perfil*/
         if(perfil==1){
             /*estudiante*/
-
         }else{
             /*Catedratico*/
             TextView titulo = root.findViewById(R.id.tituloGrupos);
@@ -96,18 +96,8 @@ public class HomeFragment extends Fragment {
         btnAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(perfil==1){
-
-                    Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
-                    startActivity(addGrupo);
-
-                }else{
-
-                    Intent addGrupo = new Intent(root.getContext(), CrearGrupo.class);
-                    startActivity(addGrupo);
-
-                }
-
+                Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
+                startActivity(addGrupo);
             }
         });
 
@@ -179,20 +169,13 @@ public class HomeFragment extends Fragment {
                 String nombreGrupo = arregloGrupos.get(position).getNombre();
                 String codigoGrupo = arregloGrupos.get(position).getCodigo();
 
-                //Define el nuevo fragmento (ArchivosGrupo = ArchivosGrupo.class)
+                //Abrir fragmento nuevo
                 Fragment Archivos = new ArchivosGrupo(idGrupo,nombreGrupo,codigoGrupo);
 
-                //Fragment transaccion permite preparar el fragmento para ejecutarse
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                //inserta el codigo XML del fragmento nuevo en el fragmento de navigacion en la vista principal
-
                 transaction.replace(R.id.nav_host_fragment_content_vista_principal, Archivos);
-                //Limpia la pila de fragmentos para insertar el nuevo
 
                 transaction.addToBackStack(null);
-                //inserta el nuevo fragmento
-
                 transaction.commit();
 
             }

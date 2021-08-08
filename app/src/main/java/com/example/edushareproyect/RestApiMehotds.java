@@ -4,7 +4,7 @@ public class RestApiMehotds {
     private static final String ipaddress = "http://3.128.217.135:1880";
     public static final String ApiGetUrl = ipaddress+"/WSCurso/listaempleados.php";
     public static final String ApiPostUrl = ipaddress+"/WSCurso/crear.php";
-    public static final String ApiImageUrl = ipaddress+"/WSCurso/UploadFile.php";
+    public static final String ApiImageUrl = ipaddress+"/WSCurso/com.example.edushareproyect.RestApiMehotds.UploadFile.php";
 
     /*
      * Metodos de registro
@@ -15,6 +15,7 @@ public class RestApiMehotds {
     public static final String ApiGETCarreras = ipaddress+"/api/carreras/lista";
     public static final String ApiGETCampus = ipaddress+"/api/campus/lista";
     public static final String ApiPOSTUploadFile= ipaddress+"/api/file/upload";
+    public static final String ApiPOSTListFiles= ipaddress+"/api/file/list";
 
     //Alumno
     public static final String ApiPOSTAlumno = ipaddress+"/api/registro/alumno";

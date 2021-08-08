@@ -20,9 +20,9 @@
                 android:id="@+id/img"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="1dp"
+                android:layout_marginEnd="0dp"
                 android:layout_marginBottom="10dp"
                 android:contentDescription="@string/app_name" />
 

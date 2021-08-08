@@ -11,6 +11,4 @@
         android:orderInCategory="100"
         android:title="Cerrar Sesion"
         app:showAsAction="never" />
-
-
 </menu>
