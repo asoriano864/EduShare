@@ -130,7 +130,8 @@ public class ArchivosGrupo extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
                 String ArchivoID = ListaArchivos.get(position).getId();
-                Fragment ArchivoDetalle = new ArchivoDetalles(ArchivoID);
+                String nombreGrupo = mGrupo;
+                Fragment ArchivoDetalle = new ArchivoDetalles(ArchivoID, nombreGrupo);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment_content_vista_principal, ArchivoDetalle);
                 transaction.addToBackStack(null);

@@ -96,8 +96,15 @@ public class HomeFragment extends Fragment {
         btnAddGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
-                startActivity(addGrupo);
+                if(perfil == 1){
+                    Intent addGrupo = new Intent(root.getContext(), AgregarGrupo.class);
+                    startActivity(addGrupo);
+                }else{
+                    Intent addGrupo = new Intent(root.getContext(), CrearGrupo.class);
+                    startActivity(addGrupo);
+                }
+
+
             }
         });
 
@@ -156,7 +163,7 @@ public class HomeFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("Error en Response", "onResponse: " +  error.getMessage().toString() );
+                Log.i("Error en Response", "onResponse: " +  error.getMessage() );
             }
         });
         queue.add(jsonObjectRequest);
