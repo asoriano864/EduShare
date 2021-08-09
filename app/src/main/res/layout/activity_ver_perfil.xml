@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AnadirContacto">
+    tools:context=".VerPerfil">
 
     <ScrollView
         android:layout_width="416dp"
         android:layout_height="731dp"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,105 +19,105 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lblTituloAnadirContactos"
+                android:id="@+id/lblTituloInfoPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:text="Añadir Contacto"
+                android:text="Perfil"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
-                android:id="@+id/imgContacto"
+                android:id="@+id/imgPerfil"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginLeft="110dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/lblNombreContacto"
+                android:id="@+id/lblNombrePerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="105dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
-                android:text="Nombre Contacto"
+                android:text="Nombre Perfil"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="50dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <TextView
-                android:id="@+id/lblTelefonoContacto"
+                android:id="@+id/lblTelefonoPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="105dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="10dp"
-                android:text="Telefono Contacto"
+                android:text="Telefono Perfil"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="50dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <TextView
-                android:id="@+id/lblCarreraContacto"
+                android:id="@+id/lblCarreraPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="105dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="10dp"
-                android:text="Carrera Contacto"
+                android:text="Carrera Perfil"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="50dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <TextView
-                android:id="@+id/lblCampusContacto"
+                android:id="@+id/lblCampusPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="105dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="10dp"
-                android:text="Campus Contacto"
+                android:text="Campus Perfil"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="50dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <TextView
-                android:id="@+id/lblCorreoContacto"
+                android:id="@+id/lblCorreoPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="105dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="10dp"
-                android:text="Correo Contacto"
+                android:text="Correo Perfil"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="50dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <Button
-                android:id="@+id/btnAgregarAmigo"
+                android:id="@+id/btnEliminarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="85dp"
                 android:layout_marginTop="75dp"
                 android:layout_marginRight="100dp"
                 android:backgroundTint="@color/primary"
-                android:text="Agregar COmpañero" />
+                android:text="Actualizar Información" />
 
             <TextView
-                android:id="@+id/lblNombreU"
+                android:id="@+id/lblNombreP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="-280dp"
+                android:layout_marginTop="-290dp"
                 android:layout_marginBottom="10dp"
                 android:text="Nombre:"
                 android:textColor="#100E0E"
@@ -123,7 +125,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/lblTelefonoU"
+                android:id="@+id/lblTelefonoP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -135,7 +137,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/lblCarreraU"
+                android:id="@+id/lblCarreraP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -147,7 +149,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/lblCampusU"
+                android:id="@+id/lblCampusP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -159,7 +161,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/lblCorreoU"
+                android:id="@+id/lblCorreoP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -169,11 +171,8 @@
                 android:textColor="#100E0E"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
-
 
     </ScrollView>
 
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

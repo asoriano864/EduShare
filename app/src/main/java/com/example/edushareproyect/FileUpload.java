@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +67,7 @@ public class FileUpload extends AppCompatActivity {
     String Grupo ="";
 
 
-    Button btnFileUploadAction;
+    ImageButton btnFileUploadAction;
     Spinner GruposList;
     TextView txtFileSelected;
     TextView txtFileSize;
@@ -90,7 +91,7 @@ public class FileUpload extends AppCompatActivity {
         ArrayAdapter<CharSequence> adp = new ArrayAdapter(this, android.R.layout.simple_spinner_item, ListaGrupos);
         GruposList.setAdapter(adp);
 
-        btnFileUploadAction = (Button) findViewById(R.id.btnLoadFile);
+        btnFileUploadAction = (ImageButton) findViewById(R.id.btnLoadFile);
         btnFileUploadAction.setEnabled(false);
         btnFileUploadAction.setOnClickListener(new View.OnClickListener() {
             @Override

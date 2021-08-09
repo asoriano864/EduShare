@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -105,7 +106,7 @@ public class VerContacto extends Fragment {
         txtCampus = (TextView) root.findViewById(R.id.lblCampusAmigo);
         txtCorreo = (TextView) root.findViewById(R.id.lblCorreoAmigo);
         imgAmigo = (ImageView) root.findViewById(R.id.imgAmigo);
-        ImageButton btnEliminarAmigo = (ImageButton) root.findViewById(R.id.btnEliminarAmigo);
+        Button btnEliminarAmigo = (Button) root.findViewById(R.id.btnEliminarAmigo);
         PostAmigo();
 
         btnEliminarAmigo.setOnClickListener(new View.OnClickListener() {

@@ -10,8 +10,8 @@
             android:title="Grupos" />
 
         <item
-            android:id="@+id/listadoAmigos"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:id="@+id/listaContactos"
+            android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="Contactos" />
 
         <item

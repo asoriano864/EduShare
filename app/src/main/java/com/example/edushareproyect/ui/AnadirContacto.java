@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -109,7 +110,7 @@ public class AnadirContacto extends Fragment {
         txtCampus = (TextView) root.findViewById(R.id.lblCampusContacto);
         txtCorreo = (TextView) root.findViewById(R.id.lblCorreoContacto);
         imgUsuario = (ImageView) root.findViewById(R.id.imgContacto);
-        ImageButton btnAgregarAmigo = (ImageButton) root.findViewById(R.id.btnAgregarAmigo);
+        Button btnAgregarAmigo = (Button) root.findViewById(R.id.btnAgregarAmigo);
 
         informacionSession = root.getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
 
@@ -158,11 +159,12 @@ public class AnadirContacto extends Fragment {
                         });
                         queue.add(jsonObjectRequest);
                         Toast.makeText(getContext(), "Compañero agregado", Toast.LENGTH_LONG).show();
-                        Fragment listaComp = new ListaContactos();
+
+                        /*Fragment listaComp = new ListaContactos();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         transaction.replace(R.id.nav_host_fragment_content_vista_principal, listaComp);
                         transaction.addToBackStack(null);
-                        transaction.commit();
+                        transaction.commit();*/
                     }
 
                 })

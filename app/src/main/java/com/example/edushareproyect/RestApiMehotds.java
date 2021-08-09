@@ -16,6 +16,7 @@ public class RestApiMehotds {
     public static final String ApiGETCampus = ipaddress+"/api/campus/lista";
     public static final String ApiPOSTUploadFile= ipaddress+"/api/file/upload";
     public static final String ApiPOSTListFiles= ipaddress+"/api/file/list";
+    public static final String ApiPOSTFileDetail= ipaddress+"/api/file/detail";
 
     //Alumno
     public static final String ApiPOSTAlumno = ipaddress+"/api/registro/alumno";

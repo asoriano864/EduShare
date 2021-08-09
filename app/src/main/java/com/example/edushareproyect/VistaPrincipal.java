@@ -46,19 +46,18 @@ public class VistaPrincipal extends AppCompatActivity {
                 startActivity(fileUp);
             }
         });
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.listaContactos, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_vista_principal);
-
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
@@ -76,19 +75,25 @@ public class VistaPrincipal extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.action_settings:
                 logout();
                 return true;
-
-
+            case R.id.action_perfil:
+                Intent verPerfil = new Intent(getApplicationContext(), VerPerfil.class);
+                startActivity(verPerfil);
+                return true;
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
         }
+
+
     }
+
 
     //-----------------------------------------------------------------------------------------------------------------------//
     private void validarSesion(){

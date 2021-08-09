@@ -34,7 +34,7 @@ import com.example.edushareproyect.Adaptadores.Adaptador;
 import com.example.edushareproyect.Objetos.FotografiaUsuario;
 import com.example.edushareproyect.R;
 import com.example.edushareproyect.RestApiMehotds;
-import com.example.edushareproyect.databinding.FragmentHomeBinding;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,7 +61,7 @@ public class ArchivosGrupo extends Fragment {
     private String mGrupo;
     private String mCodigo;
 
-    private FragmentHomeBinding binding;
+
     TextView titulo;
 
     ArrayList<FotografiaUsuario> ListaArchivos;
@@ -120,20 +120,22 @@ public class ArchivosGrupo extends Fragment {
         View root = inflater.inflate(R.layout.fragment_archivos_grupo, container, false);
         titulo = (TextView) root.findViewById(R.id.tituloClase);
         titulo.setText(mGrupo);
+        session = root.getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
+
         getFiles(root.getContext());
         ListViewArchivos = (ListView) root.findViewById(R.id.listadoArchivos);
-        session = root.getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
 
         ListViewArchivos.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                String idIntegrante = ListaArchivos.get(position).getId();
 
-                Fragment integrante = new AnadirContacto(idIntegrante);
+                String ArchivoID = ListaArchivos.get(position).getId();
+                Fragment ArchivoDetalle = new ArchivoDetalles(ArchivoID);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_content_vista_principal, integrante);
+                transaction.replace(R.id.nav_host_fragment_content_vista_principal, ArchivoDetalle);
                 transaction.addToBackStack(null);
                 transaction.commit();
+
             }
         });
 
@@ -181,7 +183,6 @@ public class ArchivosGrupo extends Fragment {
 
                                 JSONObject file = ar.getJSONObject(i);
                                 String extension = file.getString("EXTENSION");
-                                Log.e("a",extension);
                                 Bitmap img ;
                                 switch (extension){
                                     case "application/pdf":
