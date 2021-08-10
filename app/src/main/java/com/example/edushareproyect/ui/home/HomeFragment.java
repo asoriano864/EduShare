@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String> arregloNombresGrupos;
 
     SharedPreferences session;
+    TextView txtUsuario;
 
 
     private HomeViewModel homeViewModel;
@@ -66,11 +67,16 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        txtUsuario = root.findViewById(R.id.txtVPUsuario);
+
         /*Recuperar el token de la session*/
         session = this.getActivity().getSharedPreferences("session",Context.MODE_PRIVATE);
 
         String token = session.getString("token","");
+        String usuario = session.getString("correo","");
         Integer perfil = session.getInt("perfilID",0);
+
+        txtUsuario.setText(usuario);
 
         if(token.isEmpty()){
             Intent inicio = new Intent(this.getActivity().getApplicationContext(), MainActivity.class);

@@ -3,15 +3,24 @@ package com.example.edushareproyect;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +34,8 @@ public class ChangePassword extends AppCompatActivity {
     String clave1;
     String clave2;
 
+    SharedPreferences session;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +44,10 @@ public class ChangePassword extends AppCompatActivity {
 
         txtClave1 =  (EditText) findViewById(R.id.txtClave1);
         txtClave2 = (EditText) findViewById(R.id.txtClave2);
+
+        session = getSharedPreferences("session", Context.MODE_PRIVATE);
+
+        String token = session.getString("token","");
 
         btnChangePassword = (Button) findViewById(R.id.btnChangePassword);
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
@@ -53,14 +68,41 @@ public class ChangePassword extends AppCompatActivity {
 
 
     //-----------------------------------------------------------------------------------------------------------------------//
-    private void changePassword(String pass1, String pass2){
+    private void changePassword(String pass1, String pass2, String token){
         JSONObject req = new JSONObject();
         RequestQueue queue = Volley.newRequestQueue(this);
 
         try{
             req.put("clave1",pass1);
             req.put("clave2",pass2);
+            req.put("token",token);
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMehotds.ApiPOSTChangePassword, req, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
 
+                    try{
+                        JSONArray ar = response.getJSONArray("response");
+                        JSONObject r = ar.getJSONObject(0);
+                        if(r.getInt("STATUS") == 1){
+                            mostrarDialogo("Informacion","Se cambio la clave de acceso");
+                            Intent vp = new Intent(getApplicationContext(), VistaPrincipal.class);
+                            startActivity(vp);
+
+                        }else{
+                            mostrarDialogo("Error",r.getString("MESSAGE"));
+                            Log.e("data",r.toString());
+                        }
+                    }catch(Exception e){
+                        mostrarDialogo("Error",e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
         }catch (JSONException jex){
             mostrarDialogo("Error",jex.getMessage());
         }
