@@ -143,13 +143,6 @@ public class MailValidation extends AppCompatActivity {
     //-----------------------------------------------------------------------------------------------------------------------//
 
     //-----------------------------------------------------------------------------------------------------------------------//
-    /*private void sessionData(String token, Integer perfilID){
-        SharedPreferences informacionSession = getSharedPreferences("sesion", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = informacionSession.edit();
-        editor.putString("token",token);
-        editor.putInt("perfilID",perfilID);
-        editor.commit();
-    }*/
     private void sessionData(String token, Integer perfilID){
         try{
             EditorS.putString("token",token);
