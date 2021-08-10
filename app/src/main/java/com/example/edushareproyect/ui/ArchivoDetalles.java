@@ -6,6 +6,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -71,6 +72,8 @@ public class ArchivoDetalles extends Fragment {
     static final int PETICION_ACCESO = 100;
     Boolean permisosConcedidos = false;
 
+    SharedPreferences session;
+
     String Data;
     String FileName;
     String FileExtension;
@@ -127,6 +130,15 @@ public class ArchivoDetalles extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_archivo_detalles, container, false);
+        session = root.getContext().getSharedPreferences("session", Context.MODE_PRIVATE);
+
+        Integer PerfilID = session.getInt("perfilID",0);
+
+        if(PerfilID!=0){
+            //no encontro el perfil
+        }else if(PerfilID == 2){
+            //Puede eleminar
+        }
 
         txtDetFilename = root.findViewById(R.id.txtDetFilename);
         txtDetFileSize = root.findViewById(R.id.txtDetFileSize);

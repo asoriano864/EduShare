@@ -103,8 +103,6 @@ public class HomeFragment extends Fragment {
                     Intent addGrupo = new Intent(root.getContext(), CrearGrupo.class);
                     startActivity(addGrupo);
                 }
-
-
             }
         });
 
