@@ -85,6 +85,7 @@ public class ChangePassword extends AppCompatActivity {
                         JSONObject r = ar.getJSONObject(0);
                         if(r.getInt("STATUS") == 1){
                             mostrarDialogo("Informacion","Se cambio la clave de acceso");
+                            logout();
                             Intent vp = new Intent(getApplicationContext(), VistaPrincipal.class);
                             startActivity(vp);
 
@@ -120,6 +121,15 @@ public class ChangePassword extends AppCompatActivity {
 
                     }
                 }).show();
+    }
+    //-----------------------------------------------------------------------------------------------------------------------//
+
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private void logout(){
+        SharedPreferences session = getSharedPreferences("session", Context.MODE_PRIVATE);
+        session.edit().clear().commit();
+        Intent main = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(main);
     }
     //-----------------------------------------------------------------------------------------------------------------------//
 }
