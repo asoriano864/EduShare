@@ -42,7 +42,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.edushareproyect.R;
 import com.example.edushareproyect.RestApiMehotds;
 import com.example.edushareproyect.VistaPrincipal;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -319,32 +318,24 @@ public class ArchivoDetalles extends Fragment {
         FileOutputStream fileOutputStream;
         try{
 
-
             if(archivo.exists()){
-                Log.e("uri:",archivo.getPath().toString());
-                //mostrarDialogo("Info", "El archivo ya existe");
-                //return null;
                 archivo.delete();
-
             }
+
             fileOutputStream = new FileOutputStream(archivo);
             fileOutputStream.write(dataEncode);
 
-            if(archivo!=null){
+            Thread.sleep(1000);
 
+            if(archivo!=null){
                 fileOutputStream.flush();
                 fileOutputStream.close();
-            }else{
-                /*mostrarDialogo("Error","No se puede gruardar el archivo ya que esta vacio");*/
             }
-
-
-        }catch (FileNotFoundException fe){
+        }catch (FileNotFoundException | InterruptedException fe){
             mostrarDialogo("Error",fe.getMessage());
             fe.printStackTrace();
             return null;
         }
-
 
         return archivo;
     }
@@ -363,26 +354,39 @@ public class ArchivoDetalles extends Fragment {
                     }
                 });
 
-
     }
     //-----------------------------------------------------------------------------------------------------------------------//
+
+    //-----------------------------------------------------------------------------------------------------------------------//
+    private void confirmacion(String title, String mensaje, File file) {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(title)
+                .setMessage(mensaje)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        openFile(file);
+                    }
+                }).show();
+    }
+    //-----------------------------------------------------------------------------------------------------------------------//
+
 
     private void permisos() {
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(), new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE }, PETICION_ACCESO);
         }else{
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             try{
                 File f = CreateFile(Data,FileName,FileExtension);
-
-                boolean fe = f.exists();
-                if(fe==true){
-                    Toast.makeText(getActivity(),"Se guardo el archivo en descargas",Toast.LENGTH_LONG).show();
-                }
-                Log.e("File Exist",""+fe);
-                Log.e("Dir",f.getPath());
-
+                confirmacion("Informacion","El archivo fue guardado",f);
                 //Log.e("File",f.getPath());
+
+
             }catch (IOException ie){
                 mostrarDialogo("Error","No se puede descargar el archivo");
                 ie.printStackTrace();
@@ -399,13 +403,10 @@ public class ArchivoDetalles extends Fragment {
 
                 try{
                     File f = CreateFile(Data,FileName,FileExtension);
-                    boolean fe = f.exists();
-                    if(fe==true){
-                        Toast.makeText(getActivity(),"Se guardo el archivo en descargas",Toast.LENGTH_LONG).show();
+                    if(f.exists()){
+                        confirmacion("Informacion","El archivo fue guardado",f);
                     }
-                    Log.e("File Exist",""+fe);
-                    Log.e("Dir",f.getPath());
-
+                    //openFile(f);
                 }catch (IOException ie){
                     mostrarDialogo("Error","No se puede descargar el archivo");
                     ie.printStackTrace();
@@ -419,15 +420,17 @@ public class ArchivoDetalles extends Fragment {
 
     }
 
+
     public void openFile(File file){
         Uri uri = Uri.fromFile(file).normalizeScheme();
         Log.e("DIR",uri.toString());
-        String mime = get_mime_type(uri.toString());
+        String mime = get_mime_type(uri.getPath());
         Log.e("tipo",mime);
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(uri);
         intent.setType(mime);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         getActivity().startActivity(Intent.createChooser(intent, "Abrir archivo con:"));
     }
 
@@ -439,7 +442,6 @@ public class ArchivoDetalles extends Fragment {
         }
         return mime;
     }
-
 
 
 }
