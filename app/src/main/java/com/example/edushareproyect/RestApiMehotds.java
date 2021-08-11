@@ -19,6 +19,8 @@ public class RestApiMehotds {
     public static final String ApiPOSTListFiles= ipaddress+"/api/file/list";
     public static final String ApiPOSTFileDetail= ipaddress+"/api/file/detail";
     public static final String ApiPOSTSendRecoveryCode = ipaddress+"/api/registro/recovery";
+    public static final String ApiPOSTDeleteFile = ipaddress+"/api/file/delete";
+
 
 
     //Alumno

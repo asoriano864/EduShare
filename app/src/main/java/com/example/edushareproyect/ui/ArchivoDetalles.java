@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
 import android.provider.DocumentsContract;
@@ -69,6 +70,7 @@ public class ArchivoDetalles extends Fragment {
     TextView txtDetFileMail;
     ImageView FileIMG;
     ImageButton btnDownload;
+    ImageButton btnDeleteFile;
     static final int PETICION_ACCESO = 100;
     Boolean permisosConcedidos = false;
 
@@ -134,12 +136,8 @@ public class ArchivoDetalles extends Fragment {
 
         Integer PerfilID = session.getInt("perfilID",0);
 
-        if(PerfilID!=0){
-            //no encontro el perfil
-        }else if(PerfilID == 2){
-            //Puede eleminar
-        }
 
+        mostrarDialogo("Este es el id del archivo: ","Hey!!");
         txtDetFilename = root.findViewById(R.id.txtDetFilename);
         txtDetFileSize = root.findViewById(R.id.txtDetFileSize);
         txtDetFileDate = root.findViewById(R.id.txtDetFileDate);
@@ -147,6 +145,25 @@ public class ArchivoDetalles extends Fragment {
         FileIMG = root.findViewById(R.id.FileIMG);
 
         btnDownload = root.findViewById(R.id.btnFileDownload);
+        btnDeleteFile = root.findViewById(R.id.btnDeleteFile);
+
+        if(PerfilID != 1 & PerfilID !=2 ){
+            //no encontro el perfil
+            btnDeleteFile.setEnabled(false);
+            btnDeleteFile.setVisibility(View.INVISIBLE);
+        }else if(PerfilID == 1){
+            //No tiene permisos para eleminar
+            btnDeleteFile.setEnabled(false);
+            btnDeleteFile.setVisibility(View.INVISIBLE);
+        }
+
+        btnDeleteFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminarArchivo();
+            }
+        });
+
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,6 +181,52 @@ public class ArchivoDetalles extends Fragment {
 
 
         return root;
+    }
+
+    private void eliminarArchivo() {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Confirmación de Eliminación")
+                .setMessage("¿Desea eliminar el archivo?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        RequestQueue queue = Volley.newRequestQueue(getContext());
+                        String url = RestApiMehotds.ApiPOSTDeleteFile;
+                        // String token = informacionSession.getString("token","");
+                        JSONObject postData = new JSONObject();
+                        try {
+                            // postData.put("token", token);
+                            postData.put("archivoid", mArchivoID);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.i("Error en Response", "onResponse: " +  error.getMessage().toString() );
+                            }
+                        });
+                        queue.add(jsonObjectRequest);
+                        Toast.makeText(getContext(), "Dato Eliminado", Toast.LENGTH_LONG).show();
+
+
+                    }
+
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(), "Se canceló la eliminación", Toast.LENGTH_LONG).show();
+                    }
+                }).show();
     }
 
     //-----------------------------------------------------------------------------------------------------------------------//
