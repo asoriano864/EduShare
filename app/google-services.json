@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254347560777",
+    "project_id": "edushare-d0502",
+    "storage_bucket": "edushare-d0502.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254347560777:android:1d049ebed0aead9fddfc98",
+        "android_client_info": {
+          "package_name": "com.example.edushareproyect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254347560777-97q8vnbplkbbdg3g6qggfbp9umhegtv8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd2_RtyPVwg-MSaq6YmryELjscL86_1qI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254347560777-97q8vnbplkbbdg3g6qggfbp9umhegtv8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

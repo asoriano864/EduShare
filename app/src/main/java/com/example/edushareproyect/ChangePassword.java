@@ -58,7 +58,7 @@ public class ChangePassword extends AppCompatActivity {
                 if(!clave1.equals(clave2)){
                     mostrarDialogo("Error","Las claves no coinciden");
                 }else{
-
+                    changePassword(clave1,clave2,token);
                 }
 
             }
@@ -104,6 +104,8 @@ public class ChangePassword extends AppCompatActivity {
 
                 }
             });
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(objectRequest);
         }catch (JSONException jex){
             mostrarDialogo("Error",jex.getMessage());
         }

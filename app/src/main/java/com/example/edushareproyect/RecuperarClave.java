@@ -149,7 +149,7 @@ public class RecuperarClave extends AppCompatActivity {
 
                         if(status.equals(1)){
                             sessionData(token,perfilID);
-                            Intent estudiante = new Intent(getApplicationContext(), VistaPrincipal.class);
+                            Intent estudiante = new Intent(getApplicationContext(), ChangePassword.class);
                             startActivity(estudiante);
                         }else{
                             mostrarDialogo("Error",message);

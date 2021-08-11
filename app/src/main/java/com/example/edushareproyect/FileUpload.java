@@ -1,11 +1,18 @@
 package com.example.edushareproyect;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.VoiceInteractor;
 import android.content.ClipData;
 import android.content.DialogInterface;
@@ -13,7 +20,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.OpenableColumns;
@@ -39,6 +48,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.edushareproyect.Objetos.Grupo;
 import com.example.edushareproyect.ui.ArchivosGrupo;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +80,10 @@ public class FileUpload extends AppCompatActivity {
     String FileName;
     String FileExtension;
     String Grupo ="";
+
+    FirebaseDatabase database;
+    DatabaseReference reference;
+    int id;
 
 
     ImageButton btnFileUploadAction;
@@ -233,6 +252,43 @@ public class FileUpload extends AppCompatActivity {
                             String nombreGrupo = r.getString("GRUPO");
                             String codigoGrupo = r.getString("CODIGO");
 
+                            //DATABASE FIREBASE//
+                            database = FirebaseDatabase.getInstance();
+                            reference = database.getReference().child("Archivos");
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists()){
+                                        id = (int) snapshot.getChildrenCount();
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
+                            reference.child(String.valueOf(id)).setValue(FileName);
+                            reference.addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    if(!FileName.isEmpty()){
+                                        notificacion();
+                                    }
+                                }
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                }
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                }
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                }
+                            });
+
+
                             //Abrir fragmento nuevo
                             Intent intent = new Intent(getApplicationContext(),VistaPrincipal.class);
                             intent.putExtra("REDIRECT","ARCHIVOS_GRUPOS");
@@ -360,7 +416,66 @@ public class FileUpload extends AppCompatActivity {
     }
     //-----------------------------------------------------------------------------------------------------------------------//
 
+    private void notificacion(){
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url = RestApiMehotds.ApiPostTokenExist;
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("token", token);
+            postData.put("grupo", Grupo);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if(response.getString("status").equals("1")) {
+                        JSONArray data = response.getJSONArray("data");
+                        for (int i = 0; i < data.length(); i++) {
+                            JSONObject objeto = data.getJSONObject(i);
+                            if (objeto.getString("existe").equalsIgnoreCase("1")) {
+
+                                Intent intent = new Intent(getApplicationContext(), VistaPrincipal.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+
+                                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                                    NotificationChannel channel =
+                                            new NotificationChannel("n", "n", NotificationManager.IMPORTANCE_HIGH);
+
+                                    NotificationManager manager = getSystemService(NotificationManager.class);
+                                    manager.createNotificationChannel(channel);
+                                }
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "n")
+                                        .setContentText("Se ha cargado el archivo " + FileName)
+                                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                                        .setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.logo_v1))
+                                        .setAutoCancel(true)
+                                        .setContentTitle("Nuevo Archivo en la clase " + Grupo)
+                                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                                        .setContentIntent(pendingIntent);
+
+                                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+                                notificationManagerCompat.notify(999, builder.build());
+
+                            }
+                        }
+                    }
+                } catch (JSONException ex) {
+                    Log.d("EXCEPTION", ex.getMessage());
+                    Toast.makeText(getApplicationContext(), "Excepción en Response", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("Error en Response", "onResponse: " +  error.getMessage().toString() );
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
 
 
 

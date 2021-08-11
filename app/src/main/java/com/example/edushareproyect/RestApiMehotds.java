@@ -40,6 +40,7 @@ public class RestApiMehotds {
      * Session (Controles para inicio, validacion y finalizacion de sesion)
      **/
     public static final String ApiPOSTLogin = ipaddress+"/api/session/login";
+    public static final String ApiPOSTToken = ipaddress+"/api/session/token";
 
     /*
      * Interaccion con Grupos
@@ -48,5 +49,6 @@ public class RestApiMehotds {
     public static final String ApiPostAdmin = ipaddress + "/api/grupos/administrador";
     public static final String ApiPostMembers = ipaddress + "/api/grupos/lista/integrantes";
     public static final String ApiPostAddMiembro = ipaddress +"/api/grupo/agregar/alumno";
+    public static final String ApiPostTokenExist = ipaddress +"/api/grupo/token";
 
 }

@@ -4,10 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -18,6 +26,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.edushareproyect.databinding.ActivityVistaPrincipalBinding;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class VistaPrincipal extends AppCompatActivity {
 
@@ -105,6 +117,7 @@ public class VistaPrincipal extends AppCompatActivity {
             Intent vistaP = new Intent(getApplicationContext(), VistaPrincipal.class);
             startActivity(vistaP);
         }
+        revisarToken(token);
     }
 
     //-----------------------------------------------------------------------------------------------------------------------//
@@ -117,4 +130,44 @@ public class VistaPrincipal extends AppCompatActivity {
         startActivity(main);
     }
     //-----------------------------------------------------------------------------------------------------------------------//
+
+    public void revisarToken(String token){
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        String url = RestApiMehotds.ApiPOSTToken;
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if(response.getString("status").equals("1")) {
+                        JSONArray data = response.getJSONArray("data");
+                        for (int i = 0; i < data.length(); i++) {
+                            JSONObject objeto = data.getJSONObject(i);
+                            if (!objeto.getString("existe").equalsIgnoreCase("1")) {
+                                logout();
+                            }
+                        }
+                    }
+                } catch (JSONException ex) {
+                    Log.d("EXCEPTION", ex.getMessage());
+                    Toast.makeText(getApplicationContext(), "Excepción en Response", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("Error en Response", "onResponse: " +  error.getMessage().toString() );
+            }
+        });
+        queue.add(jsonObjectRequest);
+
+    }
+
 }
