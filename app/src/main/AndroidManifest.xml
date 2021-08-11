@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduShareProyect"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".ActualizarPerfil"></activity>
+        <activity android:name=".ChangePassword" />
         <activity android:name=".VerPerfil" />
         <activity android:name=".RecuperarClave" />
         <activity android:name=".CrearGrupo" />

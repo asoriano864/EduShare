@@ -39,8 +39,6 @@ public class RecuperarClave extends AppCompatActivity {
 
     String codigo_validacion;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

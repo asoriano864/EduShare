@@ -157,6 +157,8 @@ public class ArchivoDetalles extends Fragment {
             btnDeleteFile.setVisibility(View.INVISIBLE);
         }
 
+        getDetalles(root.getContext());
+
         btnDeleteFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,7 +179,7 @@ public class ArchivoDetalles extends Fragment {
         Bitmap pdf = BitmapFactory.decodeResource(getResources(), R.drawable.pdf);
         Bitmap default_file = BitmapFactory.decodeResource(getResources(), R.drawable.default_file);
 
-        getDetalles(root.getContext());
+
 
 
         return root;
@@ -281,9 +283,9 @@ public class ArchivoDetalles extends Fragment {
                         FileIMG.setImageBitmap(img);
 
                         Data = data.getString("DATA");
+                        Log.e("Data Obtenida:",Data);
                         FileName = data.getString("NOMBRE");
                         FileExtension = data.getString("EXTENSION");
-
 
                     }catch(Exception e){
                         mostrarDialogo("Error", e.getMessage());
@@ -339,8 +341,6 @@ public class ArchivoDetalles extends Fragment {
         }
 
 
-
-
         return archivo;
     }
     //-----------------------------------------------------------------------------------------------------------------------//
@@ -384,9 +384,10 @@ public class ArchivoDetalles extends Fragment {
 
             try{
                 File f = CreateFile(Data,FileName,FileExtension);
-                if(f.exists()){
-                    confirmacion("Informacion","El archivo fue guardado",f);
-                }
+
+                confirmacion("Informacion","El archivo fue guardado",f);
+                //Log.e("File",f.getPath());
+
                 //openFile(f);
 
 

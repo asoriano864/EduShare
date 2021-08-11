@@ -93,9 +93,28 @@ public class VistaPrincipal extends AppCompatActivity {
                 logout();
                 return true;
             case R.id.action_perfil:
+                SharedPreferences informacionSession = getSharedPreferences("session", Context.MODE_PRIVATE);
+                String token = informacionSession.getString("token","");
+                Integer perfilID = informacionSession.getInt("perfilID",0);
+                Boolean active = informacionSession.getBoolean("active",false);
+                if(!active){
+                    Intent vistaP = new Intent(getApplicationContext(), VistaPrincipal.class);
+                    startActivity(vistaP);
+                }
+                Log.d("PerfilID: ",informacionSession.toString());
+                Log.d("Token: ",token);
                 Intent verPerfil = new Intent(getApplicationContext(), VerPerfil.class);
+                if(perfilID==1){
+                    /*estudiante*/
+                    verPerfil.putExtra("usuario", "estudiante");
+
+                }else{
+                    /*Catedratico*/
+                    verPerfil.putExtra("usuario", "catedratico");
+                }
                 startActivity(verPerfil);
                 return true;
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

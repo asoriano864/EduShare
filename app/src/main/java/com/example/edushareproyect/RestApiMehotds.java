@@ -38,6 +38,12 @@ public class RestApiMehotds {
     public static final String ApiPostAddFriend = ipaddress + "/api/grupos/agregar/contacto";
     public static final String ApiPostDeleteFriend = ipaddress + "/api/contacto/eliminar";
 
+    //Usuario
+    public static final String ApiPostStudent = ipaddress + "/api/usuario/estudiante";
+    public static final String ApiUpdateStudent = ipaddress + "/api/usuario/actualizar";
+    public static final String ApiPostCatedratico = ipaddress + "/api/usuario/catedratico";
+    public static final String ApiUpdateCatedratico = ipaddress + "/api/usuario/actualizar/catedratico";
+
     /**
      * Session (Controles para inicio, validacion y finalizacion de sesion)
      **/

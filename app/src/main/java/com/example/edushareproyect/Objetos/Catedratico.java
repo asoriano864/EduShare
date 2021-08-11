@@ -29,6 +29,28 @@ public class Catedratico {
             String foto){}
 
 
+    public Catedratico(String nombres, String apellidos, String telefono, String fechaNacimiento, String direccion, String campus, String foto){
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.direccion = direccion;
+        this.campus = campus;
+        this.foto = foto;
+    }
+
+    public Catedratico(String nombres, String apellidos, String identidad, String telefono, String fechaNacimiento, String direccion,
+                       String campus, String correo, String foto){
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.identidad = identidad;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.direccion = direccion;
+        this.campus = campus;
+        this.correo = correo;
+        this.foto = foto;
+    }
 
     public Catedratico(String nombre, String telefono, String foto, String correo) {
         this.nombres = nombre;

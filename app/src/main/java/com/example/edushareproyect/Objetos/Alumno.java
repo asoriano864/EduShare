@@ -17,6 +17,33 @@ public class Alumno {
 
     public Alumno(){}
 
+    public Alumno(String nombres, String apellidos, String telefono, String fechaNacimiento, String direccion, String carrera, String campus, String foto){
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.direccion = direccion;
+        this.carrera = carrera;
+        this.campus = campus;
+        this.foto = foto;
+    }
+
+    public Alumno(String nombres, String apellidos, String telefono, String fechaNacimiento, String direccion, String carrera, String campus,
+                  String cuenta, String identidad, String correo, String foto){
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.direccion = direccion;
+        this.carrera = carrera;
+        this.campus = campus;
+        this.cuenta = cuenta;
+        this.identidad = identidad;
+        this.correo = correo;
+        this.foto = foto;
+    }
+
+
     public Alumno(
             String cuenta,
             String nombres,
