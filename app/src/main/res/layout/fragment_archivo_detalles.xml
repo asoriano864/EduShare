@@ -120,18 +120,37 @@
                         android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:backgroundTint="@color/cardview_shadow_start_color"
+                        android:clickable="true"
                         android:elevation="@dimen/activity_horizontal_margin"
                         android:padding="5dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/download"
-                        android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintHorizontal_bias="0.857"
                         app:layout_constraintStart_toStartOf="parent"
 
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.92" />
+                        app:layout_constraintVertical_bias="0.946" />
+
+                    <ImageButton
+                        android:id="@+id/btnDeleteFile"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:adjustViewBounds="true"
+                        android:backgroundTint="@color/cardview_shadow_start_color"
+                        android:clickable="true"
+                        android:elevation="@dimen/activity_horizontal_margin"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/delete"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.173"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.946" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
