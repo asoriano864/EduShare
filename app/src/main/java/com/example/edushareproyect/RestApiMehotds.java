@@ -12,12 +12,16 @@ public class RestApiMehotds {
 
     //Comunes
     public static final String ApiPOSTSesionMail = ipaddress+"/api/sesion/mail";
+    public static final String ApiPOSTChangePassword = ipaddress+"/api/password/change";
     public static final String ApiGETCarreras = ipaddress+"/api/carreras/lista";
     public static final String ApiGETCampus = ipaddress+"/api/campus/lista";
     public static final String ApiPOSTUploadFile= ipaddress+"/api/file/upload";
     public static final String ApiPOSTListFiles= ipaddress+"/api/file/list";
     public static final String ApiPOSTFileDetail= ipaddress+"/api/file/detail";
+    public static final String ApiPOSTSendRecoveryCode = ipaddress+"/api/registro/recovery";
     public static final String ApiPOSTDeleteFile = ipaddress+"/api/file/delete";
+
+
 
     //Alumno
     public static final String ApiPOSTAlumno = ipaddress+"/api/registro/alumno";
