@@ -182,7 +182,7 @@ public class VistaPrincipal extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.i("Error en Response", "onResponse: " +  error.getMessage().toString() );
+                Log.i("Error en Response", "onResponse: " +  error.getMessage() );
             }
         });
         queue.add(jsonObjectRequest);

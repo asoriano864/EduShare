@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/lblTituloInfoPerfil"
-                android:layout_width="wrap_content"
+                android:layout_width="362dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"

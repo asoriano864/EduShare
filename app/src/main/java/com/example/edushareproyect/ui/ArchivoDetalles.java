@@ -173,15 +173,6 @@ public class ArchivoDetalles extends Fragment {
             }
         });
 
-        Bitmap excel = BitmapFactory.decodeResource(getResources(), R.drawable.excel);
-        Bitmap word = BitmapFactory.decodeResource(getResources(), R.drawable.word);
-        Bitmap pp = BitmapFactory.decodeResource(getResources(), R.drawable.powerpoint);
-        Bitmap pdf = BitmapFactory.decodeResource(getResources(), R.drawable.pdf);
-        Bitmap default_file = BitmapFactory.decodeResource(getResources(), R.drawable.default_file);
-
-
-
-
         return root;
     }
 
@@ -209,6 +200,11 @@ public class ArchivoDetalles extends Fragment {
                             @Override
                             public void onResponse(JSONObject response) {
 
+
+                                Intent main = new Intent(getActivity(), VistaPrincipal.class);
+                                startActivity(main);
+
+
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -218,6 +214,9 @@ public class ArchivoDetalles extends Fragment {
                         });
                         queue.add(jsonObjectRequest);
                         Toast.makeText(getContext(), "Dato Eliminado", Toast.LENGTH_LONG).show();
+
+                        Intent main = new Intent(getActivity(), VistaPrincipal.class);
+                        startActivity(main);
 
 
                     }
@@ -357,19 +356,7 @@ public class ArchivoDetalles extends Fragment {
     }
     //-----------------------------------------------------------------------------------------------------------------------//
 
-    //-----------------------------------------------------------------------------------------------------------------------//
-    private void confirmacion(String title, String mensaje, File file) {
-        new AlertDialog.Builder(getActivity())
-                .setTitle(title)
-                .setMessage(mensaje)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        openFile(file);
-                    }
-                }).show();
-    }
-    //-----------------------------------------------------------------------------------------------------------------------//
+
 
 
     private void permisos() {
@@ -383,7 +370,10 @@ public class ArchivoDetalles extends Fragment {
             }
             try{
                 File f = CreateFile(Data,FileName,FileExtension);
-                confirmacion("Informacion","El archivo fue guardado",f);
+                if(f.exists()){
+                    openDownloads();
+                }
+
                 //Log.e("File",f.getPath());
 
 
@@ -404,7 +394,7 @@ public class ArchivoDetalles extends Fragment {
                 try{
                     File f = CreateFile(Data,FileName,FileExtension);
                     if(f.exists()){
-                        confirmacion("Informacion","El archivo fue guardado",f);
+                        openDownloads();
                     }
                     //openFile(f);
                 }catch (IOException ie){
@@ -441,6 +431,11 @@ public class ArchivoDetalles extends Fragment {
             mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
         }
         return mime;
+    }
+
+    private void openDownloads(){
+        startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+
     }
 
 
