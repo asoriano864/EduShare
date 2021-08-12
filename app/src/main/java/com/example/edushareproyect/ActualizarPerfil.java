@@ -329,6 +329,7 @@ public class ActualizarPerfil extends AppCompatActivity {
                                 }
                                 Toast.makeText(getApplicationContext(),"Alumno Actualizado",Toast.LENGTH_LONG).show();
                                 Intent verPerfil = new Intent(getApplicationContext(), VerPerfil.class);
+                                verPerfil.putExtra("usuario", "inicio");
                                 startActivity(verPerfil);
                             }
                         }, new Response.ErrorListener() {
@@ -415,6 +416,7 @@ public class ActualizarPerfil extends AppCompatActivity {
                                 }
                                 Toast.makeText(getApplicationContext(),"Catedrático Actualizado",Toast.LENGTH_LONG).show();
                                 Intent verPerfil = new Intent(getApplicationContext(), VerPerfil.class);
+                                verPerfil.putExtra("usuario", "inicio");
                                 startActivity(verPerfil);
                             }
                         }, new Response.ErrorListener() {

@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginTop="66dp"
-                tools:srcCompat="@android:mipmap/sym_def_app_icon" />
+                tools:srcCompat="@drawable/img_default" />
 
             <Button
                 android:id="@+id/btnTakeFoto"
@@ -111,8 +111,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
-                android:hint="Fecha Nacimiento"
-                android:inputType="text"
+                android:hint="Fecha Nacimiento (AAAA-MM-DD)"
+                android:inputType="date"
                 android:text="" />
 
             <EditText

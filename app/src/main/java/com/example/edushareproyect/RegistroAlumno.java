@@ -78,6 +78,7 @@ public class RegistroAlumno extends AppCompatActivity {
     EditText txtPasswordConfirm;
     ArrayList<String> ListaCarreras = new ArrayList<>();
     ArrayList<String> ListaCampus = new ArrayList<>();
+    ImageView RegAluFoto;
 
     String url;
 
@@ -98,6 +99,9 @@ public class RegistroAlumno extends AppCompatActivity {
          txtCorreo = (EditText) findViewById(R.id.RegAluCorreo);
          txtPassword = (EditText) findViewById(R.id.RegAluPassword);
          txtPasswordConfirm = (EditText) findViewById(R.id.RegAluConfirmPassword);
+
+        RegAluFoto = (ImageView) findViewById(R.id.RegAluFoto);
+        RegAluFoto.setImageResource(R.drawable.img_default);
 
 
         url = RestApiMehotds.ApiPOSTAlumno;

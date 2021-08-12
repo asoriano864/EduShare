@@ -68,6 +68,11 @@ public class VerPerfil extends AppCompatActivity {
             txtCarrera.setVisibility(View.INVISIBLE);
             lblCarrera.setVisibility(View.INVISIBLE);
         }
+        else if(usuario.equals("inicio")){
+            Intent inicio = new Intent(getApplicationContext(), VistaPrincipal.class);
+            startActivity(inicio);
+        }
+
 
         btnActualizarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override

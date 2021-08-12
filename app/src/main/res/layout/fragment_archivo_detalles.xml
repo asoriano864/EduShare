@@ -72,10 +72,40 @@
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.506"
+                        app:layout_constraintHorizontal_bias="0.493"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.264" />
+                        app:layout_constraintVertical_bias="0.319" />
+
+                    <TextView
+                        android:id="@+id/txtDetFileMail"
+                        android:layout_width="331dp"
+                        android:layout_height="34dp"
+                        android:text="Mail"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.512"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.574" />
+
+                    <TextView
+                        android:id="@+id/txtDetFileDate"
+                        android:layout_width="333dp"
+                        android:layout_height="35dp"
+                        android:text="Date"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.525"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.486" />
 
                     <TextView
                         android:id="@+id/txtDetFileSize"
@@ -87,57 +117,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
 
-                        app:layout_constraintHorizontal_bias="0.512"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.351" />
-
-                    <TextView
-                        android:id="@+id/txtDetFileMail"
-                        android:layout_width="331dp"
-                        android:layout_height="34dp"
-                        android:text="Mail"
-                        android:textColor="@color/primary"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.525"
-
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.519" />
-
-                    <TextView
-                        android:id="@+id/txtDetFileDate"
-                        android:layout_width="333dp"
-                        android:layout_height="35dp"
-                        android:text="Date"
-                        android:textColor="@color/primary"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.538"
-
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.431" />
-
-                    <ImageButton
-                        android:id="@+id/btnFileDownload"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:clickable="true"
-                        android:padding="5dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/download"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.135"
-                        app:layout_constraintStart_toStartOf="parent"
-
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.687" />
+                        app:layout_constraintVertical_bias="0.405" />
 
                     <ImageButton
                         android:id="@+id/btnDeleteFile"
@@ -154,7 +136,24 @@
                         app:layout_constraintStart_toStartOf="parent"
 
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.687" />
+                        app:layout_constraintVertical_bias="0.752" />
+
+                    <ImageButton
+                        android:id="@+id/btnFileDownload"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:adjustViewBounds="true"
+                        android:clickable="true"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/download"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.135"
+                        app:layout_constraintStart_toStartOf="parent"
+
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.752" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

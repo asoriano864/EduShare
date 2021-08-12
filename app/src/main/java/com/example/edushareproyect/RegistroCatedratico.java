@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -67,7 +68,9 @@ public class RegistroCatedratico extends AppCompatActivity {
     EditText txtDireccion;
     EditText txtCorreo;
     EditText txtPassword;
-    EditText txtPasswordConfirm;    
+    EditText txtPasswordConfirm;
+    ImageView RegCatFoto;
+
     ArrayList<String> ListaCampus = new ArrayList<>();
 
     String url;
@@ -88,6 +91,10 @@ public class RegistroCatedratico extends AppCompatActivity {
         txtCorreo = (EditText) findViewById(R.id.RegCatCorreo);
         txtPassword = (EditText) findViewById(R.id.RegCatPassword);
         txtPasswordConfirm = (EditText) findViewById(R.id.RegCatConfirmPassword);
+        RegCatFoto=(ImageView) findViewById(R.id.RegCatFoto);
+
+        RegCatFoto.setImageResource(R.drawable.img_default);
+
 
 
         url = RestApiMehotds.ApiPOSTcatedratico;

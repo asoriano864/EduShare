@@ -14,10 +14,7 @@
             android:icon="@android:drawable/ic_menu_my_calendar"
             android:title="Contactos" />
 
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@android:drawable/ic_menu_sort_by_size"
-            android:title="Mis Archivos" />
+
 
 
 

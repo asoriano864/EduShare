@@ -31,7 +31,7 @@
                         android:id="@+id/lblTituloListaAmigos"
                         android:layout_width="251dp"
                         android:layout_height="28dp"
-                        android:text="Lista de Amigos"
+                        android:text="Lista de Contactos"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/white"
                         android:textStyle="bold"

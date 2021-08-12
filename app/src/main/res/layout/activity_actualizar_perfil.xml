@@ -215,7 +215,7 @@
                 android:layout_marginLeft="170dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:hint="AA/MM/DD"
+                android:hint="AAAA-MM-DD"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="16sp"
                 tools:layout_editor_absoluteX="50dp"
